@@ -9,7 +9,7 @@ namespace ECommerce
     public class MyMail
     {
         #region Şifre
-        private const string password = "yldrmHkn23.";
+        private const string password = "password";
         #endregion
         public string ToMail { get;private set; }
         public string Subject { get; private set; }
@@ -26,7 +26,7 @@ namespace ECommerce
         {
             MailMessage mail = new MailMessage()
             {
-                From =new MailAddress("ahakan.yildirim336@gmail.com","YıldırımShop E-Ticaret Sitesi")
+                From =new MailAddress("mail","YıldırımShop E-Ticaret Sitesi")
             };
 
             mail.To.Add(this.ToMail);
@@ -40,7 +40,7 @@ namespace ECommerce
                 EnableSsl = true,
 
             };
-            client.Credentials = new System.Net.NetworkCredential("ahakan.yildirim336@gmail.com", password);
+            client.Credentials = new System.Net.NetworkCredential("mail", password);
 
             client.Send(mail);
 
