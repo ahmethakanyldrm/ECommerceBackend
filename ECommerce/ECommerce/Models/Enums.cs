@@ -10,5 +10,6 @@ namespace ECommerce.Models
         Customer =0 ,
         Editor=8,
         Admin = 10
+        
     }
 }
