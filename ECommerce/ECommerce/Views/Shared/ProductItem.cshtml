@@ -1,0 +1,29 @@
+﻿@model ECommerce.DB.Products
+@{
+    if (string.IsNullOrEmpty(Model.ProductImageName))
+    {
+        Model.ProductImageName = "images/300x150.png";
+    }
+}
+
+
+
+<div class="col-md-3 col-sm-4 col-xs-12">
+
+    <div class="thumbnail">
+        <img src="~/@Model.ProductImageName" class="img img-responsive" style="max-height:126px; max-width:252px;">
+        <div class="caption">
+            <h4 class="ProductNameStyle">@Model.Name</h4>
+            <h4 class="ProductNameStyle">@Model.Price ₺</h4>
+
+            <p>
+                <a href="~/i/AddBasket/@Model.Id" class="btn btn-success">
+                    <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;Sepete Ekle
+                </a>
+                <button onclick="GetProductInfo(@Model.Id)" class="btn btn-info">
+                    <span class="glyphicon glyphicon-info-sign"></span>&nbsp;Bilgi
+                </button>
+            </p>
+        </div>
+    </div>
+</div>

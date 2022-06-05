@@ -1,0 +1,70 @@
+﻿@model ECommerce.Models.Message.MessageRepliesModel
+
+@{
+    ViewBag.Title = "Mesaj Yanıtları";
+    var currentUser = (ECommerce.DB.Members)Session["LogonUser"];
+    var classMe = "col-md-9 col-md-push-1 col-md-offset-1 well well-empty";
+    var classYou = "col-md-10 col-md-offset-1 well";
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <h3>Konu : @Model.MReplies.FirstOrDefault().Messages.Subject</h3>
+        <hr />
+    </div>
+</div>
+<div class="row">
+
+    @foreach (var msj in Model.MReplies)
+    {
+
+
+            <div class="@(msj.Member_Id==currentUser.Id?classMe:classYou)">
+                <div class="form-group">
+                    <label class="col-md-2 text-danger">Tarih : </label>
+                    <label class="col-md-10 text-info">@msj.AddedDate.ToString("dd.MM.yyyy hh:mm")</label>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 text-danger">Kimden : </label>
+                    <label class="col-md-10 text-warning">
+                    @(string.Format("{0} {1} ({2})"
+                    ,msj.Members.Name,msj.Members.Surname,msj.Members.MemberType.ToString()))</label>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 text-danger">Mesaj : </label>
+                    <label class="col-md-10">
+                        @msj.Text
+                    </label>
+                </div>
+            </div>
+        
+
+    }
+
+
+</div>
+@using (Html.BeginForm())
+{
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <h4>Yanıt</h4>
+                <hr />
+            </div>
+            @Html.Hidden("MessageId",Model.MReplies.FirstOrDefault().Messages.Id)
+            <div class="form-group">
+                @Html.TextArea("Text",new { placeholder = "Mesaj Metni", @class="form-control" })
+                
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-success">
+                    <span class="glyphicon glyphicon-send"></span> Gönder
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+}
+

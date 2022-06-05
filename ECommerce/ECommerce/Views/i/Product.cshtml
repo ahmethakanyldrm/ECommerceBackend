@@ -1,0 +1,14 @@
+﻿@model ECommerce.Models.i.ProductModels
+
+@{
+    ViewBag.Title = "Product";
+}
+
+@Html.Partial("_Product", Model.Product)
+
+@Html.Partial("_AddCart", Model.Product)
+
+@Html.Partial("_Comments", new ECommerce.Models.i.CommentModels() {
+    Comments = Model.Comments,Product= Model.Product
+})
+

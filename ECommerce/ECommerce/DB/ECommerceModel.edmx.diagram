@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="83e9a0c5e33f47c5857f8234870f8800" Name="Diagram1">
+        <EntityTypeShape EntityType="ECommerceModel.Comments" Width="1.5" PointX="3.25" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceModel.MessageReplies" Width="1.5" PointX="6" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceModel.OrderDetails" Width="1.5" PointX="5.25" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceModel.Products" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        <AssociationConnector Association="ECommerceModel.FK_Comments_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="ECommerceModel.FK_OrderDetails_Products" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ECommerceModel.Addresses" Width="1.5" PointX="3" PointY="4.75" />
+        <EntityTypeShape EntityType="ECommerceModel.Orders" Width="1.5" PointX="3" PointY="11.625" />
+        <AssociationConnector Association="ECommerceModel.FK_OrderDetails_Orders" />
+        <EntityTypeShape EntityType="ECommerceModel.Members" Width="1.5" PointX="0.75" PointY="5.625" />
+        <EntityTypeShape EntityType="ECommerceModel.Messages" Width="1.5" PointX="3" PointY="1.25" />
+        <AssociationConnector Association="ECommerceModel.FK_Addresses_Members" />
+        <AssociationConnector Association="ECommerceModel.FK_Comments_Members" />
+        <AssociationConnector Association="ECommerceModel.FK_MessageReplies_Members" />
+        <AssociationConnector Association="ECommerceModel.FK_Messages_Members" />
+        <AssociationConnector Association="ECommerceModel.FK_Orders_Members" />
+        <AssociationConnector Association="ECommerceModel.FK_MessageReplies_Messages" />
+        <EntityTypeShape EntityType="ECommerceModel.Categories" Width="1.5" PointX="0.75" PointY="16.375" />
+        <AssociationConnector Association="ECommerceModel.FK_Categories_Categories" />
+        <AssociationConnector Association="ECommerceModel.FK_Products_Categories" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

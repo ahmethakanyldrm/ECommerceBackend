@@ -1,0 +1,54 @@
+﻿@model ECommerce.Models.i.CommentModels
+@{
+    string defultImage = "images/account64.png";
+}
+<div class="row">
+    <div class="col-md-8 col-md-push-4">
+        <div class="form-group">
+            <h3>Yorumlar</h3>
+            <hr />
+        </div>
+
+        <div class="form-group">
+            <ul class="media-list">
+                @foreach (var item in Model.Comments.OrderBy(x => x.AddedDate).ToList())
+                {
+                    <li class="media">
+                        <div class="media-left">
+                            @* To Do Kişi Profili girilecek *@
+                            <a href="~/Account/Profil/@item.Members.Id">
+                                <img class="media-object img-circle img-thumbnail" src="~/@(string.IsNullOrEmpty
+                        (item.Members.ProfileImageName)?defultImage:item.Members.ProfileImageName)"
+                                style="width:64px;">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">@($"{item.Members.Name} {item.Members.Surname}")</h4>
+                            @item.Text
+                        </div>
+                    </li>
+                }
+
+            </ul>
+        </div>
+        @if (Session["LogonUser"] != null)
+        {
+            using (Html.BeginForm("Product", "i", FormMethod.Post))
+            {
+                @Html.Hidden("Product_Id",Model.Product.Id)
+                <div class="form-group">
+
+                    <small style="color:red">@ViewBag.MyError</small>
+                    <textarea cols="30" rows="3" id="Text" name="Text" class="form-control"
+                placeholder="Yorumunuzu Gönderin" maxlength="255"></textarea>
+                </div>
+                <div class="form-group text-right">
+                    <button type="submit" class="btn btn-success">
+                        <span class="glyphicon glyphicon-send"></span> Gönder
+                    </button>
+                </div>
+            }
+
+        }
+    </div>
+</div>

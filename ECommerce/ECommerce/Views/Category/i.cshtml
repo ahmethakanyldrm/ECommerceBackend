@@ -1,0 +1,57 @@
+﻿@model IEnumerable<ECommerce.DB.Categories>
+
+@{
+    ViewBag.Title = "Kategoriler";
+}
+
+<h2>Kategoriler</h2>
+
+<p>
+    <a href="@Url.Action("Edit")" class="btn btn-info">Yeni Kategori Ekle</a>
+    @*@Html.ActionLink("Yeni Kategori Ekle", "Edit")*@
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Kategori Adı")
+        </th>
+
+        <th>
+            @Html.DisplayName("Üst Kategorisi")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Categories2.Name)
+        </td>
+        <td>
+            <a href="@Url.Action("Edit",new { id = item.Id })" class="btn btn-success">Düzenle</a>
+
+            <button onclick="DeleteCategory('@Url.Action("Delete",new { id = item.Id })')"
+                    class="btn btn-danger">
+                Sil
+            </button>
+     
+        </td>
+    </tr>
+}
+
+</table>
+
+<script>
+
+    function DeleteCategory(url) {
+        //Silmek İstediğinize Emin Misiniz
+        if (confirm("Silmek İstediğinize Emin Misiniz")) {
+            location.href = url;
+        }
+    }
+
+</script>

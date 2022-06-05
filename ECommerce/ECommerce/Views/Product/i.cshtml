@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ECommerce.DB.Products>
+
+@{
+    ViewBag.Title = "Ürünler";
+}
+
+<h2>Ürünler</h2>
+
+<p>
+    <a href="@Url.Action("Edit")" class="btn btn-info">Yeni Ürün Ekle</a>
+    @*@Html.ActionLink("Yeni Ürün", "Edit")*@
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Ürün Adı")
+        </th>
+
+        <th>
+            @Html.DisplayName("Fiyatı")
+        </th>
+
+        <th>
+            @Html.DisplayName("Kategorisi")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Categories.Name)
+        </td>
+        <td>
+            <a href="@Url.Action("Edit",new { id = item.Id })" class="btn btn-success">Düzenle</a>
+           
+            <button onclick="DeleteProduct('@Url.Action("Delete",new { id = item.Id })')" 
+                    class="btn btn-danger">Sil</button>
+           
+        </td>
+    </tr>
+}
+    
+</table>
+
+<script>
+
+    function DeleteProduct(url) {
+        //Silmek İstediğinize Emin Misiniz
+        if (confirm("Silmek İstediğinize Emin Misiniz")) {
+            location.href = url;
+        }
+    }
+
+</script>
